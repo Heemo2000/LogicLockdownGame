@@ -1,0 +1,54 @@
+{
+    "name": "WireManagerControls",
+    "maps": [
+        {
+            "name": "WireManagerActionMap",
+            "id": "32b94760-852a-41e8-a7aa-ab7aa458681d",
+            "actions": [
+                {
+                    "name": "ScreenClick",
+                    "type": "Button",
+                    "id": "0e84589b-68c0-4a7e-bab1-a2a0cd72fde9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PosOnScreen",
+                    "type": "Value",
+                    "id": "7784109e-ec6e-4c68-ab0f-72f75fb88750",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3691e031-b10b-45c4-94ce-d3cd92378c97",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScreenClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1376697e-65a8-4f65-ba58-e82be64bb456",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PosOnScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
