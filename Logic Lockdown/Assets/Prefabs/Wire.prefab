@@ -144,8 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c5cd00cd34ce74eba9faa7a2b67724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPinPos: {x: 0, y: 0, z: 0}
-  endPinPos: {x: 0, y: 0, z: 0}
+  startPinPos: {x: -0.4, y: 6.98, z: -12.305}
+  endPinPos: {x: 4.2, y: 6.98, z: -12.305}
+  startingPin: {fileID: 0}
+  endingPin: {fileID: 0}
   pinMask:
     serializedVersion: 2
     m_Bits: 64

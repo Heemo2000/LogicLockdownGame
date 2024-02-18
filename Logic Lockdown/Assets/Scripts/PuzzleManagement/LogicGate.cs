@@ -4,9 +4,18 @@ using UnityEngine;
 
 namespace Game.PuzzleManagement
 {
-    public interface LogicGate
+    public abstract class LogicGate : MonoBehaviour
     {
-        string GetLogicGateName();
-        Voltage GetOutput();
+        [SerializeField]protected Pin inputPin1;
+        [SerializeField]protected Pin inputPin2;
+
+        [SerializeField]private Pin outputPin;
+        public abstract string GetLogicGateName();
+        public abstract Voltage GetOutput();
+
+        protected virtual void Update()
+        {
+            outputPin.SetVoltage(GetOutput());
+        }
     }
 }

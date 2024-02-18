@@ -18,17 +18,20 @@ namespace Game.PuzzleManagement
 
 
         [Min(0.1f)]
-        [SerializeField]private float distanceBetweenWires = 1.0f;
+        [SerializeField]private float minWireLength = 1.0f;
+
+        [Min(0.1f)]
+        [SerializeField]private float maxWireLength = 2.0f;
 
         //private Pin _startingPin;
         //private Pin _endingPin;
-
         private Wire _wire;
-
         private int _clickCount = 0;
 
         private WireManagerControls _controls;
         private Vector2 _posOnScreen = Vector2.zero;
+
+        private Plane _checkPlane;
 
 
         private void OnScreenClick(InputAction.CallbackContext context)
@@ -42,9 +45,11 @@ namespace Game.PuzzleManagement
                 Pin pin = hit.transform.GetComponent<Pin>();
                 if(_clickCount == 1)
                 {
-                    
+                    _checkPlane.SetNormalAndPosition(lookCamera.transform.forward, pin.transform.position);
+
                     _wire = Instantiate(wirePrefab, Vector3.zero, Quaternion.identity);
                     _wire.StartPinPos = hit.point;
+                    _wire.EndPinPos = hit.point;
                     _wire.Init();
                 }
                 else if(_clickCount == 2)
@@ -52,7 +57,8 @@ namespace Game.PuzzleManagement
                     
                     _wire.EndPinPos = hit.point;
 
-                    if(Vector3.SqrMagnitude(_wire.EndPinPos - _wire.StartPinPos) < distanceBetweenWires * distanceBetweenWires)
+                    float squareDistance = Vector3.SqrMagnitude(_wire.EndPinPos - _wire.StartPinPos);
+                    if(squareDistance < minWireLength * minWireLength)
                     {
                         _clickCount--;
                         return;
@@ -70,18 +76,41 @@ namespace Game.PuzzleManagement
             _posOnScreen = context.ReadValue<Vector2>();
             if(_wire != null)
             {
+                
                 Ray ray = lookCamera.ScreenPointToRay(_posOnScreen);
-                if(Physics.SphereCast(ray, pinCheckRadius, out RaycastHit hit, 1000.0f, pinMask.value))
+
+                Vector3 endPosition = Vector3.zero;
+                if(_checkPlane.Raycast(ray, out float distance))
                 {
-                    _wire.EndPinPos = hit.point;
+                    endPosition = ray.origin + ray.direction * distance;
                 }
-                 
+                else if(Physics.SphereCast(ray, pinCheckRadius, out RaycastHit hit, 1.0f, pinMask.value))
+                {
+                    endPosition = hit.point;
+                }
+
+                float squareDistance = Vector3.SqrMagnitude(endPosition - _wire.StartPinPos);
+
+                if(squareDistance < minWireLength * minWireLength)
+                {
+                    Vector3 direction = (endPosition - _wire.StartPinPos).normalized;
+                    endPosition = _wire.StartPinPos + direction * minWireLength;
+                }
+
+                else if(squareDistance > maxWireLength * maxWireLength)
+                {
+                    Vector3 direction = (endPosition - _wire.StartPinPos).normalized;
+                    endPosition = _wire.StartPinPos + direction * maxWireLength;
+                }
+                
+                _wire.EndPinPos = endPosition;
             }
         }
 
 
         private void Awake() {
             _controls = new WireManagerControls();
+            _checkPlane = new Plane(transform.forward, transform.position);
         }
 
 

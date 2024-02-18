@@ -777,7 +777,8 @@ MonoBehaviour:
   lookCamera: {fileID: 330585545}
   wirePrefab: {fileID: 4924053656720390170, guid: 529f5679b8c6a1d45b62c8b4fb301acc,
     type: 3}
-  distanceBetweenWires: 1
+  minWireLength: 1
+  maxWireLength: 2
 --- !u!4 &721891942
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,6 +1775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1274800476}
+  - component: {fileID: 1274800477}
   m_Layer: 0
   m_Name: AND Gate
   m_TagString: Untagged
@@ -1789,7 +1791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274800475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.53, y: 6.67, z: -12.45}
+  m_LocalPosition: {x: 1.06, y: 6.67, z: -12.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1799,6 +1801,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1274800477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274800475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797256a77ee7fc44c827a5a1334bf7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputPin1: {fileID: 1034337076}
+  inputPin2: {fileID: 1061005305}
+  outputPin: {fileID: 773277479}
 --- !u!1 &1356593733
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,11 +66,9 @@ namespace Game.PuzzleManagement
                 {
                     startingPinVoltage = startingPin.PinVoltage;
                     //_renderer.SetPosition(0, startingPin.transform.position);
-                    _renderer.SetPosition(0, startPinPos);
                 }
             }
-            
-            
+
             OnSetVoltage?.Invoke(startingPinVoltage);
 
             count = Physics.OverlapSphereNonAlloc(endPinPos, pinIndicatorRadius, _detectedCollider, pinMask.value);
@@ -82,13 +80,41 @@ namespace Game.PuzzleManagement
                 {
                     endingPin.SetVoltage(startingPinVoltage);
                     //_renderer.SetPosition(1, endingPin.transform.position); 
-                    _renderer.SetPosition(1, endPinPos);   
                 }
             }
+            else
+            {
+                ResetEndingPin();
+            }
             
-
+            Render();
         }
 
+        private void Render()
+        {
+            _renderer.SetPosition(0, startPinPos);
+            _renderer.SetPosition(1, endPinPos);
+        }
+
+        private void ResetStartingPin()
+        {
+            if(startingPin != null && startingPin != endingPin)
+            {
+                startingPin.SetVoltage(Voltage.Low);
+            }
+            
+            startingPin = null;
+        }
+
+        private void ResetEndingPin()
+        {
+            if(endingPin != null && startingPin != endingPin)
+            {
+                endingPin.SetVoltage(Voltage.Low);
+            }
+            
+            endingPin = null;
+        }
 
         private void SetWireColor(Voltage voltage)
         {
@@ -132,8 +158,8 @@ namespace Game.PuzzleManagement
         private void OnDrawGizmos() {
             Gizmos.color = Color.yellow;
 
-            Gizmos.DrawWireSphere(startPinPos, pinIndicatorRadius);
-            Gizmos.DrawWireSphere(endPinPos, pinIndicatorRadius);
+            Gizmos.DrawSphere(startPinPos, pinIndicatorRadius);
+            Gizmos.DrawSphere(endPinPos, pinIndicatorRadius);
         }
     }
 }
