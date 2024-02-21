@@ -50,6 +50,7 @@ namespace Game.PuzzleManagement
                     _wire = Instantiate(wirePrefab, Vector3.zero, Quaternion.identity);
                     _wire.StartPinPos = hit.point;
                     _wire.EndPinPos = hit.point;
+                    _wire.StartingPin = pin;
                     _wire.Init();
                 }
                 else if(_clickCount == 2)
@@ -65,6 +66,8 @@ namespace Game.PuzzleManagement
                     }
                     
                     //_wire.EndPinPos = _endingPin.transform.position;
+
+                    _wire.EndingPin = pin;
                     _clickCount = 0;
                     _wire = null;
                 }
@@ -102,7 +105,7 @@ namespace Game.PuzzleManagement
                     Vector3 direction = (endPosition - _wire.StartPinPos).normalized;
                     endPosition = _wire.StartPinPos + direction * maxWireLength;
                 }
-                
+
                 _wire.EndPinPos = endPosition;
             }
         }

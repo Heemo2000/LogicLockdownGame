@@ -13,8 +13,6 @@ namespace Game.PuzzleManagement
 
         [SerializeField]private Pin startingPin;
         [SerializeField]private Pin endingPin;
-
-        [SerializeField]private LayerMask pinMask;
         
         [SerializeField]private Color lowVoltColor;
         [SerializeField]private Color highVoltColor;
@@ -27,15 +25,16 @@ namespace Game.PuzzleManagement
         [SerializeField]private float pinIndicatorRadius = 0.2f;
         private LineRenderer _renderer;
         private Material _wireMaterial;
-        private Collider[] _detectedCollider = new Collider[1];
 
         public UnityEvent<Voltage> OnSetVoltage;
 
         public Vector3 StartPinPos { get => startPinPos; set => startPinPos = value; }
         public Vector3 EndPinPos { get => endPinPos; set => endPinPos = value; }
 
-        public Pin StartingPin { get => startingPin; }
-        public Pin EndingPin { get => endingPin; }
+        public Pin StartingPin { get => startingPin; set=> startingPin = value;}
+        public Pin EndingPin { get => endingPin; set=> endingPin = value;}
+
+        private Voltage _previousStartingPinVoltage = Voltage.Low;
 
         public void Init()
         {
@@ -53,41 +52,21 @@ namespace Game.PuzzleManagement
             transform.position = Vector3.Lerp(startPinPos, endPinPos, 0.5f);
 
         }
-        private void UpdateWireStatus()
+        private void CheckWiring()
         {
-            Voltage startingPinVoltage = Voltage.Low;
-
-            int count = Physics.OverlapSphereNonAlloc(startPinPos, pinIndicatorRadius, _detectedCollider, pinMask.value);
-
-            if(count > 0)
+            if(startingPin == null || endingPin == null)
             {
-                startingPin = _detectedCollider[0].transform.GetComponent<Pin>();
-                if(startingPin != null)
-                {
-                    startingPinVoltage = startingPin.PinVoltage;
-                    //_renderer.SetPosition(0, startingPin.transform.position);
-                }
+                return;
             }
+            Voltage startingPinVoltage = startingPin.PinVoltage;
 
-            OnSetVoltage?.Invoke(startingPinVoltage);
-
-            count = Physics.OverlapSphereNonAlloc(endPinPos, pinIndicatorRadius, _detectedCollider, pinMask.value);
-
-            if(count > 0)
+            if(startingPinVoltage != _previousStartingPinVoltage)
             {
-                endingPin = _detectedCollider[0].transform.GetComponent<Pin>();
-                if(endingPin != null)
-                {
-                    endingPin.SetVoltage(startingPinVoltage);
-                    //_renderer.SetPosition(1, endingPin.transform.position); 
-                }
-            }
-            else
-            {
-                ResetEndingPin();
+                OnSetVoltage?.Invoke(startingPinVoltage);
+                endingPin.SetVoltage(startingPinVoltage);
             }
             
-            Render();
+            _previousStartingPinVoltage = startingPinVoltage;
         }
 
         private void Render()
@@ -142,12 +121,13 @@ namespace Game.PuzzleManagement
 
         private void Start() 
         {
-            UpdateWireStatus();    
+            CheckWiring();    
         }
 
         private void Update() 
         {
-            UpdateWireStatus();
+            CheckWiring();
+            Render();
         }
 
         private void OnDestroy() 
