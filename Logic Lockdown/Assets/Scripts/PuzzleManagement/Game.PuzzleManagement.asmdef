@@ -1,0 +1,17 @@
+{
+    "name": "Game.PuzzleManagement",
+    "rootNamespace": "Game.PuzzleManagement",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:c9984fc3200a99e49bacd64b67976f47"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

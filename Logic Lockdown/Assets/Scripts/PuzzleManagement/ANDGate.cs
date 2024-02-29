@@ -6,6 +6,9 @@ namespace Game.PuzzleManagement
 {
     public class ANDGate : LogicGate
     {
+        [SerializeField]private Pin inputPin1;
+        [SerializeField]private Pin inputPin2;
+
         public override string GetLogicGateName()
         {
             return "AND";   
@@ -13,7 +16,7 @@ namespace Game.PuzzleManagement
 
         public override Voltage GetOutput()
         {
-            return base.inputPin1.PinVoltage & base.inputPin2.PinVoltage;
+            return inputPin1.PinVoltage & inputPin2.PinVoltage;
         }
     }
 }

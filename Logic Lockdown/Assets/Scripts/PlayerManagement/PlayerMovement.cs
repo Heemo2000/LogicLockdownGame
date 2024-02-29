@@ -39,14 +39,12 @@ namespace Game.PlayerManagement
         [Header("Animation Settings: ")]
         [SerializeField]private Animator playerAnimator;
 
-        [Header("Moving platform detection settings: ")]
-        [SerializeField]private LayerMask movingPlatformMask;
-
+        
 
         private CharacterController _controller;
 
-        private Vector2 _currentMousePosition = Vector2.zero;
-        private Vector2 _previousMousePosition = Vector2.zero;
+        //private Vector2 _currentMousePosition = Vector2.zero;
+        //private Vector2 _previousMousePosition = Vector2.zero;
 
         private float _mouseX = 0.0f;
         private float _mouseY = 0.0f;
@@ -79,11 +77,14 @@ namespace Game.PlayerManagement
             }
         }
 
+        /*
         public void OnMouseLook(InputAction.CallbackContext context)
         {
             _currentMousePosition = context.ReadValue<Vector2>();
         }
+        */
 
+        /*
         private void CalculateMouseAxes()
         {
             Vector2 diff = _currentMousePosition - _previousMousePosition;
@@ -96,6 +97,7 @@ namespace Game.PlayerManagement
 
             _previousMousePosition = _currentMousePosition;
         }
+        */
 
         private void CalculateParameters()
         {
@@ -200,16 +202,6 @@ namespace Game.PlayerManagement
             
             HandleMovement();
             HandleGravity();
-        }
-
-        private void OnTriggerStay(Collider other) 
-        {
-            int layerMask = 1 << other.gameObject.layer;
-            if((layerMask & movingPlatformMask.value) != 0)
-            {
-                Debug.Log("Detecting colliders");
-            }
-                
         }
 
         private void OnDrawGizmos() 

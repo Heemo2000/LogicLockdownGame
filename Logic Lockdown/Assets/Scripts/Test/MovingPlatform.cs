@@ -23,20 +23,22 @@ namespace Game.Test
             Vector3 startPos = startPoint.position;
             Vector3 endPos = endPoint.position;
 
-            float delta = 0.0f;
+            
             while(this.enabled)
             {
-                Vector3 lerpedPosition = Vector3.Lerp(startPos, endPos, delta);
-                _platformRB.MovePosition(lerpedPosition);
-                delta += moveSpeed * Time.fixedDeltaTime;
+                Vector3 direction = (endPos - transform.position).normalized;
+                _platformRB.velocity = direction * moveSpeed;
 
-                if(delta >= 1.0f)
+                float squareDistance = (endPos - transform.position).sqrMagnitude;
+
+                if(squareDistance <= 0.01f)
                 {
+                    _platformRB.velocity = Vector3.zero;
                     yield return new WaitForSeconds(waitTime);
                     Vector3 temp = startPos;
                     startPos = endPos;
                     endPos = temp;
-                    delta = 0.0f;
+                    
                 }
                 
                 yield return null;
@@ -50,34 +52,29 @@ namespace Game.Test
         }
 
         private void Start() {
-            _platformRB.isKinematic = true;
-            _platformCollider.isTrigger = true;
+            _platformRB.isKinematic = false;
+            _platformCollider.isTrigger = false;
             StartCoroutine(MovePlatform());
         }
 
-        private void FixedUpdate() 
-        {
-            _velocity = (_platformRB.position - _previousPos) / Time.fixedDeltaTime;
-            _previousPos = _platformRB.position;
-        }
-
-        private void OnTriggerEnter(Collider other) 
+        private void OnCollisionEnter(Collision other) 
         {
             Debug.Log("Detected something.");
             CharacterController controller = other.transform.GetComponent<CharacterController>();
             if(controller != null)
             {
                 Debug.Log("Detected character controller.");
-                controller.Move(_velocity * Time.fixedDeltaTime);
+                controller.Move(_platformRB.velocity * Time.fixedDeltaTime);
             }
         }
-        private void OnTriggerStay(Collider other) {
+
+        private void OnCollisionStay(Collision other) {
             Debug.Log("Detected something.");
             CharacterController controller = other.transform.GetComponent<CharacterController>();
             if(controller != null)
             {
                 Debug.Log("Detected character controller.");
-                controller.Move(_velocity * Time.fixedDeltaTime);
+                controller.Move(_platformRB.velocity * Time.fixedDeltaTime);
             }
             
         }

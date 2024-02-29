@@ -1,0 +1,17 @@
+{
+    "name": "Game.PlayerManagement",
+    "rootNamespace": "Game.PlayerManagement",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:907cddb447505f847a8aca53b54ff044"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
