@@ -12,7 +12,13 @@ namespace Game.CameraManagement
         [SerializeField]private CinemachineVirtualCameraBase[] cameras;
         
         [SerializeField]private CinemachineVirtualCameraBase startingCamera;
+        [SerializeField]private CinemachineVirtualCameraBase playerCamera;
 
+
+        public void SwitchBackToPlayerCamera()
+        {
+            SwitchCamera(playerCamera);
+        }
         public void SwitchCamera(CinemachineVirtualCameraBase toCamera)
         {
             //Debug.Log("Switching Cameras");

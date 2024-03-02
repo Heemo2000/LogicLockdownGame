@@ -3,7 +3,8 @@
     "rootNamespace": "Game.PlayerManagement",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:907cddb447505f847a8aca53b54ff044"
+        "GUID:907cddb447505f847a8aca53b54ff044",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

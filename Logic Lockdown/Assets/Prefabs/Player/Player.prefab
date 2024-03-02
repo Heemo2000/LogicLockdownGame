@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4866658324952578743}
   - component: {fileID: 4866658324952578736}
   - component: {fileID: 4866658324952578737}
+  - component: {fileID: 4866658325344948823}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -56,17 +57,13 @@ MonoBehaviour:
   jumpTime: 1
   groundCheck: {fileID: 4866658325630805185}
   groundCheckDist: 0.1
-  maxGroundCheckDist: 0.505
+  maxGroundCheckDist: 0.5
   jumpHeight: 2
   fallMultiplier: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 129
   playerAnimator: {fileID: 4866658324864041321}
-  movingPlatformMask:
-    serializedVersion: 2
-    m_Bits: 128
-  interactionRadius: 2.5
 --- !u!143 &4866658324952578740
 CharacterController:
   m_ObjectHideFlags: 0
@@ -160,7 +157,19 @@ MonoBehaviour:
     m_ActionId: c317ba2f-25f6-403f-a653-3f6a4fbcd2ee
     m_ActionName: PlayerActionMap/MouseLook[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4866658325344948823}
+        m_TargetAssemblyTypeName: Game.PlayerManagement.PlayerInteract, Assembly-CSharp
+        m_MethodName: OnInteractionPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f2f516c8-ff71-4bfe-82fc-a8eeeac7cb5e
     m_ActionName: PlayerActionMap/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
@@ -197,6 +206,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4866658325344948823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866658324952578699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af6cd1014a0a3b44bbcfcdcd4621a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 2
+  offset: {x: 0, y: 0, z: 0}
+  interactionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  interactionCheckTime: 0.5
+  interactDetectCanvas: {fileID: 0}
+  backButton: {fileID: 0}
+  interactCanvas: {fileID: 0}
+  OnSuccessfulInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLeavingInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Game.CameraManagement.CameraSwitcher, Game.CameraManagement
+        m_MethodName: SwitchBackToPlayerCamera
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4866658325619302861
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4866658325630805184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
