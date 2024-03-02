@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Game.Core;
 
 namespace Game.PlayerManagement
 {
@@ -43,17 +44,14 @@ namespace Game.PlayerManagement
 
         private CharacterController _controller;
 
-        //private Vector2 _currentMousePosition = Vector2.zero;
-        //private Vector2 _previousMousePosition = Vector2.zero;
-
-        private float _mouseX = 0.0f;
-        private float _mouseY = 0.0f;
         private Vector2 _moveInput = Vector2.zero;
         
         private float _turnSmoothVelocity = 0.0f;
         private float _gravity;
         private float _initialJumpVelocity;
         private float _velocityY;
+
+        public Transform FollowCamera { get => followCamera; set => followCamera = value; }
 
         public void OnMovement(InputAction.CallbackContext context)
         {
@@ -77,27 +75,7 @@ namespace Game.PlayerManagement
             }
         }
 
-        /*
-        public void OnMouseLook(InputAction.CallbackContext context)
-        {
-            _currentMousePosition = context.ReadValue<Vector2>();
-        }
-        */
-
-        /*
-        private void CalculateMouseAxes()
-        {
-            Vector2 diff = _currentMousePosition - _previousMousePosition;
-            
-            
-            _mouseX = (diff.x == 0.0f) ? 0.0f: Mathf.Sign(diff.x);
-            _mouseY = (diff.y == 0.0f) ? 0.0f: Mathf.Sign(diff.y);
-            
-            //Debug.Log("Mouse Axis values: (" + _mouseX + ", " + _mouseY + ")");
-
-            _previousMousePosition = _currentMousePosition;
-        }
-        */
+        
 
         private void CalculateParameters()
         {
@@ -192,16 +170,15 @@ namespace Game.PlayerManagement
         private void Awake() {
             _controller = GetComponent<CharacterController>();
         }
-        
-        private void Update() {
-            //CalculateMouseAxes();
-        }
 
         private void FixedUpdate() {
-            CalculateParameters();
+            if(GameManager.Instance.GamePauseStatus != GamePauseStatus.Paused)
+            {
+                CalculateParameters();
             
-            HandleMovement();
-            HandleGravity();
+                HandleMovement();
+                HandleGravity();
+            }
         }
 
         private void OnDrawGizmos() 

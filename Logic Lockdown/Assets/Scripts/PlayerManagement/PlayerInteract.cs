@@ -32,8 +32,10 @@ namespace Game.PlayerManagement
 
         public UnityEvent OnSuccessfulInteraction;
         public UnityEvent OnLeavingInteraction;
-        
 
+        public Canvas InteractDetectCanvas { get => interactDetectCanvas; set => interactDetectCanvas = value; }
+        public Button BackButton { get => backButton; set => backButton = value; }
+        public Canvas InteractCanvas { get => interactCanvas; set => interactCanvas = value; }
 
         public void OnInteractionPressed(InputAction.CallbackContext context)
         {

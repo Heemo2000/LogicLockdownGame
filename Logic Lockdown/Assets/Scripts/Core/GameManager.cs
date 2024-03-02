@@ -69,6 +69,21 @@ namespace Game.Core
             OnGameEnd.AddListener(EndGame);
             OnBackToMain.AddListener(ExitGameplay);
         }
+
+        private void Update() 
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                if(_gamePauseStatus != GamePauseStatus.UnPaused)
+                {
+                    OnGamePaused?.Invoke();
+                }
+                else
+                {
+                    OnGameResumed?.Invoke();
+                }
+            }    
+        }
         
     }
 
