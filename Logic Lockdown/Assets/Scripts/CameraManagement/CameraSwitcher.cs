@@ -37,6 +37,9 @@ namespace Game.CameraManagement
 
         private void Start() 
         {
+            FindObjectsSortMode mode = FindObjectsSortMode.InstanceID;
+            FindObjectsInactive inactive = FindObjectsInactive.Include;
+            cameras = FindObjectsByType<CinemachineVirtualCameraBase>(inactive,mode);
             SwitchCamera(startingCamera);    
         }
     }
