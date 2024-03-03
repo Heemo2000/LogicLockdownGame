@@ -16,11 +16,12 @@ namespace Game.PlayerManagement
         [SerializeField]private Canvas interactCanvas;
         [SerializeField]private Button backButton;
         [SerializeField]private CinemachineFreeLook freeLookCamera;
+        [SerializeField]private Camera mainCamera;
         [SerializeField]private CameraSwitcher cameraSwitcher;
         private void InitializePlayer()
         {
             var player = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
-            player.FollowCamera = freeLookCamera.transform;
+            player.FollowCamera = mainCamera.transform;
             var playerInteract = player.GetComponent<PlayerInteract>();
             playerInteract.InteractDetectCanvas = interactDetectCanavas;
             playerInteract.InteractCanvas = interactCanvas;
