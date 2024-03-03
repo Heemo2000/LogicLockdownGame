@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using Game.Controls;
 
 
-namespace Game.PuzzleManagement
+namespace Game.PuzzleManagement.LogicGatePuzzles
 {
     public class WireManager : MonoBehaviour
     {

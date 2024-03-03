@@ -2,36 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.PuzzleManagement
+namespace Game.PuzzleManagement.LogicGatePuzzles
 {
-    public class NORGate : LogicGate
+    public class NANDGate : LogicGate
     {
-        [SerializeField]private Pin inputPin1;
-        [SerializeField]private Pin inputPin2;
+        [SerializeField] private Pin inputPin1;
+        [SerializeField] private Pin inputPin2;
 
         public override string GetLogicGateName()
         {
-            return "NOR";
+            return "NAND";
         }
 
         public override Voltage GetOutput()
         {
-            if(inputPin1.PinVoltage == Voltage.High && inputPin2.PinVoltage == Voltage.High)
+            if(inputPin1.PinVoltage == Voltage.Low && inputPin2.PinVoltage == Voltage.Low)
             {
-                return Voltage.Low;
+                return Voltage.High;
             }
 
             if(inputPin1.PinVoltage == Voltage.Low && inputPin2.PinVoltage == Voltage.High)
             {
-                return Voltage.Low;
+                return Voltage.High;
             }
 
             if(inputPin1.PinVoltage == Voltage.High && inputPin2.PinVoltage == Voltage.Low)
             {
-                return Voltage.Low;
+                return Voltage.High;
             }
 
-            return Voltage.High;
+            return Voltage.Low;
         }
     }
 }

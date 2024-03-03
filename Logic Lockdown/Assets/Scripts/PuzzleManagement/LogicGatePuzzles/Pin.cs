@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.PuzzleManagement
+namespace Game.PuzzleManagement.LogicGatePuzzles
 {
     [RequireComponent(typeof(BoxCollider))]
     public class Pin : MonoBehaviour

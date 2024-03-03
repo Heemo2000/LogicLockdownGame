@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.PuzzleManagement
+namespace Game.PuzzleManagement.LogicGatePuzzles
 {
     [RequireComponent(typeof(LineRenderer))]
     public class Wire : MonoBehaviour

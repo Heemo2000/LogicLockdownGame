@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.PuzzleManagement
+namespace Game.PuzzleManagement.LogicGatePuzzles
 {
     public class ANDGate : LogicGate
     {
