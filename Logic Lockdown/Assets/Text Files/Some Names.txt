@@ -1,0 +1,10 @@
+Computer/A machine which reads, outputs and processes data.
+Byte/2nd smallest memory.
+Programming/A way of giving instructions to the computer.
+Hardware/Physical component of a computer
+Software/Non Physical component of a computer.
+Microprocessor/a computer processor for which the data processing logic and control is included on a single IC, or a small number of ICs.
+Render/A way of drawing things on computer screen.
+BillGates/Founder of Microsoft.
+CharlesBabbage/Father of modern computers.
+LadyAdaLovelace/The first programmer.

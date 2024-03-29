@@ -1,0 +1,5 @@
+Computer/A machine which reads, outputs and processes data.
+Byte/2nd smallest memory.
+Hardware/Physical component of a computer
+Software/Non Physical computer of a computer.
+Render/A way of drawing things on computer screen.

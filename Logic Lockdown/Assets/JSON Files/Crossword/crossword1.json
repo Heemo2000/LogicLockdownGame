@@ -1,0 +1,45 @@
+{
+    "crosswordDatas" : 
+                    [
+                        {
+                            "word": "Computer",
+                            "clue": "A machine which reads, outputs and processes data."
+                        },
+                        {
+                            "word": "Byte",
+                            "clue":"2nd smallest memory."
+                        },
+                        {
+                            "word":"Programming",
+                            "clue":"A way of giving instructions to the computer."
+                        },
+                        {
+                            "word":"Hardware",
+                            "clue":"Physical component of a computer."
+                        },
+                        {
+                            "word":"Software",
+                            "clue":"Non Physical component of a computer."
+                        },
+                        {
+                            "word":"Microprocessor",
+                            "clue":"a computer processor for which the data processing logic and control is included on a single IC, or a small number of ICs."
+                        },
+                        {
+                            "word":"Render",
+                            "clue":"A way of drawing things on computer screen."
+                        },
+                        {
+                            "word":"BillGates",
+                            "clue":"Founder of Microsoft."
+                        },
+                        {
+                            "word":"CharlesBabbage",
+                            "clue":"Father of modern computers."
+                        },
+                        {
+                            "word":"LadyAdaLovelace",
+                            "clue":"The first programmer."
+                        }
+                   ]
+}

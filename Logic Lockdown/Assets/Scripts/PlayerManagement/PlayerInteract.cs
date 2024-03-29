@@ -101,7 +101,9 @@ namespace Game.PlayerManagement
             else
             {
                 Debug.Log("Closest is null");
+                _currentInteractable = null;
                 _interactionLocked = true;
+
             }
         }
         private IEnumerator CheckInteractions()
