@@ -21,7 +21,6 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 	    [SerializeField]private CrosswordTile tile;
 		[SerializeField]private Vector2 blockSize;
 		[SerializeField]private CinemachineTargetGroup targetGroup;
-		[SerializeField]private bool showCrossword;
         [SerializeField]private bool showBackground;
 
         [Min(0.5f)]
@@ -290,6 +289,8 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 
 	        _allTiles.Clear();
 
+			Random.InitState((int)System.DateTime.Now.Ticks);
+
 			int tileNumber = 1;
 	        foreach(CrosswordInfo crossword in _crosswordToShow)
 	        {
@@ -318,7 +319,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 	                {
 	                    tile = Instantiate(this.tile, pos, transform.rotation);
 						tile.CluePart = crossword.Word[i];
-	                    tile.ShowCluePart = showCrossword;
+	                    tile.ShowCluePart = Random.Range(1, 10+1) >= 8;
 						_allTiles.Add(tile);
 						tile.gameObject.transform.parent = transform;
 						tile.name = tileNumber.ToString();

@@ -3,7 +3,8 @@
     "rootNamespace": "Game.InteractionManagement",
     "references": [
         "GUID:4307f53044263cf4b835bd812fc161a4",
-        "GUID:dbd4399dab39f4942be725492f2f4d2b"
+        "GUID:dbd4399dab39f4942be725492f2f4d2b",
+        "GUID:e4bc0536ef8e48947836fa3ed5b3feec"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -18,6 +18,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
         [SerializeField]private Vector2 maxCheckDistance;
         [SerializeField]private LayerMask tileMask;
         [SerializeField]private CrosswordTileInfo position;
+        
     
         public TMP_InputField InputField { get => inputField; }
         public List<CrosswordInfo> Crosswords { get => _crosswords; }
@@ -26,11 +27,14 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
         public List<CrosswordTile> OtherTiles { get=> _otherTiles; }
         public bool ShowCluePart { get => _showCluePart; set => _showCluePart = value; }
         public bool ShowBackgroundGraphic { get => _showBackgroundGraphic; set => _showBackgroundGraphic = value; }
+        public bool TextEditable { get => _textEditable; set => _textEditable = value; }
 
         private List<CrosswordInfo> _crosswords = new List<CrosswordInfo>();
         private char _cluePart = '_';
         private bool _showCluePart = false;
         private bool _showBackgroundGraphic = false;
+
+        private bool _textEditable = false;
         
         private List<CrosswordTile> _otherTiles = new List<CrosswordTile>();
     
@@ -125,6 +129,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
             {
                 _otherTiles[i].HideBackground();
             }
+
             if(_showCluePart)
             {
                 SetChar(_cluePart);
@@ -134,6 +139,8 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
                 SetChar(' ');
             }
 
+            _textEditable = !_showCluePart;
+            inputField.readOnly = !_textEditable;
             inputField.onValueChanged.AddListener(Capitalize);
         }
     
