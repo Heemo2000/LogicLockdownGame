@@ -1,0 +1,25 @@
+{
+    "crosswordDatas" : 
+                    [
+                        {
+                            "word": "Computer",
+                            "clue": "A machine which reads, outputs and processes data."
+                        },
+                        {
+                            "word": "Byte",
+                            "clue":"2nd smallest memory."
+                        },
+                        {
+                            "word":"Programming",
+                            "clue":"A way of giving instructions to the computer."
+                        },
+                        {
+                            "word":"Hardware",
+                            "clue":"Physical component of a computer."
+                        },
+                        {
+                            "word":"Software",
+                            "clue":"Non Physical component of a computer."
+                        }
+                   ]
+}

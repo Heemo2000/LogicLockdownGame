@@ -34,13 +34,22 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 
         public bool AllTilesFilledCorrect()
         {
+			if(_allTiles.Count == 0)
+			{
+				return false;
+			}
+
             foreach(CrosswordTile tile in _allTiles)
             {
-                if(tile.InputField.text[0] != tile.CluePart)
+				char current = tile.InputField.text[0];
+				//Debug.Log("Current: " + current + ", Clue Part: " + tile.CluePart);
+                if(current != tile.CluePart)
                 {
                     return false;
                 }
             }
+
+			//Debug.Log("All tiles are filled correctly");
 
             return true;
         }
