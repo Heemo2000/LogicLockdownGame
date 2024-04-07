@@ -1,17 +1,17 @@
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
+using ExtendedButtons;
 
 namespace Game.PuzzleManagement.QuizPuzzles
 {
     public class QuizHandler : MonoBehaviour
     {
         [SerializeField]private TMP_Text questionText;
-        [SerializeField]private Button[] answerButtons;
+        [SerializeField]private Button3D[] answerButtons;
         [SerializeField]private QuestionsLoader questionsLoader;
         [SerializeField]private CorrectnessIndicator correctnessIndicator;
 
@@ -21,8 +21,14 @@ namespace Game.PuzzleManagement.QuizPuzzles
         private List<TMP_Text> _answerButtonsTexts;
 
         private QuizData _currentQuestionData;
+
+        private bool _isAnswerCorrect = false;
+
+        public bool IsAnswerCorrect { get => _isAnswerCorrect; }
+
         private void ShowQuestionData()
         {
+            _isAnswerCorrect = false;
             _currentQuestionData = questionsLoader.GetRandomQuestion();
             questionText.text = _currentQuestionData.question;
             correctnessIndicator.ClearText();
@@ -67,18 +73,22 @@ namespace Game.PuzzleManagement.QuizPuzzles
 
         private void Start() 
         {
-            foreach(Button button in answerButtons)
+            foreach(Button3D button in answerButtons)
             {
                 TMP_Text textContainer = button.GetComponentInChildren<TMP_Text>(true);
                 if(textContainer != null)
                 {
                     _answerButtonsTexts.Add(textContainer);
                     button.onClick.AddListener(()=> CheckAnswer(textContainer));
+                    button.onEnter.AddListener(()=> {Debug.Log("Entered");});
                 }
             }
 
             OnCorrectAnswer.AddListener(correctnessIndicator.IndicateCorrect);
             OnWrongAnswer.AddListener(correctnessIndicator.IndicateWrong);
+            OnCorrectAnswer.AddListener(()=> _isAnswerCorrect = true);
+            OnWrongAnswer.AddListener(()=> _isAnswerCorrect = false);
+            
 
             ShowQuestionData();    
         }
