@@ -10,7 +10,7 @@ using Leguar.TotalJSON;
 
 namespace Game.PuzzleManagement.CrosswordPuzzles
 {
-    public class CrosswordManager : MonoBehaviour
+    public class CrosswordHandler : MonoBehaviour
     {
         [Header("Showing hint Settings:")]
         [SerializeField]private Camera lookCamera;

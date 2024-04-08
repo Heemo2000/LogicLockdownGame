@@ -6,7 +6,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 {
     public class CrosswordSolutionAcceptor : SolutionAcceptor
     {
-        private CrosswordManager _crosswordManager;
+        private CrosswordHandler _crosswordManager;
 
         public override bool IsSolutionCorrect()
         {
@@ -14,7 +14,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
         }
 
         private void Awake() {
-            _crosswordManager = GetComponent<CrosswordManager>();
+            _crosswordManager = GetComponent<CrosswordHandler>();
         }
 
 
