@@ -702,7 +702,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837973201}
-  - component: {fileID: 837973200}
   m_Layer: 0
   m_Name: CrosswordGenerator
   m_TagString: Untagged
@@ -710,23 +709,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &837973200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837973199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dec7b356f4efd44b976123a95abc90b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wordsFile: {fileID: 4900000, guid: 7518ed9c5a3ebbb4badbe2a7ec6c5531, type: 3}
-  tile: {fileID: 3221274176322719181, guid: 47f102e241668184e9cd382f8ea0dcde, type: 3}
-  blockSize: {x: 1.4, y: 1.2}
-  targetGroup: {fileID: 1239551301}
-  showCrossword: 1
 --- !u!4 &837973201
 Transform:
   m_ObjectHideFlags: 0
