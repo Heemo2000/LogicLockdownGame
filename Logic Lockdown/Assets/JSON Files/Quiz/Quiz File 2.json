@@ -1,0 +1,44 @@
+{
+    "quizDatas" : [
+        {
+            "question": "Which of the following circuit is used as a special signal to demultiplex the address bus and data bus?",
+            "options" : ["Priority Encoder",
+                         "Decoder",
+                         "Address Latch Enable",
+                         "Demultiplexer"
+                        ],
+            "answerIndex": 2
+        }, 
+        {
+            "question": "How many flip-flops are there in a flag register of 8085 microprocessor?",
+            "options" : ["4",
+                         "5",
+                         "7",
+                         "10"],
+            "answerIndex": 1
+        }, 
+        {
+            "question": "How many address lines are present in 8086 microprocessor?",
+            "options" : ["16",
+                  "20",
+                  "32",
+                  "40"],
+            "answerIndex": 1
+        }, 
+        {
+            "question": "Which of the following is not a status flag in microprocessor?",
+            "options" : ["Overflow flag",
+                         "Direction flag",
+                         "Interrupt flag",
+                         "Index flag"],
+            "answerIndex": 3
+        }, 
+        {
+            "question": "A memory connected to a microprocessor has 20 address lines and 16 data lines. What will be the memory capacity?",
+            "options": ["8 KB",
+                        "2 MB",
+                        "16 MB",
+                        "64 KB"],
+            "answerIndex": 1
+        }]
+}

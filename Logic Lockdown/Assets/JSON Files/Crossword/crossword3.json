@@ -1,0 +1,33 @@
+{
+    "crosswordDatas" : 
+                    [
+                        {
+                            "word":"AmbigiousGrammer",
+                            "clue":"A grammar where a language sentence has more than one parse tree."
+                        },
+                        {
+                            "word":"Bootstrapping",
+                            "clue":"leveraging an existing compiler or interpreter to develop a new version of the same compiler or interpreter."
+                        },
+                        {
+                            "word":"SymbolTable",
+                            "clue":"The table records the names of variables, functions, and other program elements and their characteristics and qualities."
+                        },
+                        {
+                            "word":"LexicalAnalysis",
+                            "clue":"The process of breaking a sequence of characters into tokens, which are meaningful units for the compiler."
+                        },
+                        {
+                            "word":"Parsing",
+                            "clue":"The process of analyzing the syntax of a program to determine its grammatical structure according to a formal grammar."
+                        },
+                        {
+                            "word":"SyntaxTree",
+                            "clue":"A hierarchical representation of the syntactic structure of a program, typically used for further analysis and code generation."
+                        },
+                        {
+                            "word":"CodeGeneration",
+                            "clue":"The phase of compilation where the compiler translates the intermediate representation into target machine code for execution."
+                        }
+                   ]
+}

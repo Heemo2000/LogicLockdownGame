@@ -15,6 +15,7 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
         [SerializeField]private MeshRenderer pinGraphic;
         [SerializeField]private Material pinMaterialPrefab;
         [SerializeField]private bool allowUserChanges = false;
+        [SerializeField]private bool shouldBeFirst = false;
 
         public UnityEvent<Voltage> OnSetVoltage;
 
@@ -25,7 +26,8 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
         private Material _pinMaterial;
 
         public Voltage PinVoltage { get => voltage; }
-    
+        public bool ShouldBeFirst { get => shouldBeFirst; }
+
         public void SetVoltage(Voltage voltage)
         {
             this.voltage = voltage;

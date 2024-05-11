@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Game.Controls;
-
+using Game.Core;
 
 namespace Game.PuzzleManagement.LogicGatePuzzles
 {
@@ -13,6 +13,7 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
         [Min(0.1f)]
         [SerializeField]private float pinCheckRadius = 0.2f;
         [SerializeField]private LayerMask pinMask;
+        [SerializeField]private LayerMask wireMask;
         [SerializeField]private Camera lookCamera;
         [SerializeField]private Wire wirePrefab;
 
@@ -33,30 +34,73 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
 
         private Plane _checkPlane;
 
+        public void SetPositionAndNormal(Transform t)
+        {
+            _checkPlane.SetNormalAndPosition(t.forward, t.position);
+        }
+        private void OnRemoveWire(InputAction.CallbackContext context)
+        {
+            if(GameManager.Instance.GamePauseStatus == GamePauseStatus.Paused)
+            {
+                return;
+            }
+            Debug.Log("Trying to find out wire. Pos On Screen: " + _posOnScreen);
+            Ray ray = lookCamera.ScreenPointToRay(_posOnScreen);
+            if(Physics.SphereCast(ray, pinCheckRadius, out RaycastHit hit, 1000.0f, wireMask.value))
+            {   
+                Debug.Log("Found Something");
+                Wire wire = hit.transform.GetComponent<Wire>();
+                if(wire != null)
+                {
+                    Debug.Log("Found wire");
+                    Destroy(wire.gameObject);
+                    _clickCount = 0;
+                }
+            }
+            else
+            {
+                Debug.Log("Found nothing");
+            }
 
+            if(_wire != null && _clickCount < 2)
+            {
+                Destroy(_wire.gameObject);
+                _clickCount = 0;
+            }
+
+        }
         private void OnScreenClick(InputAction.CallbackContext context)
         {
-            
+            if(GameManager.Instance.GamePauseStatus == GamePauseStatus.Paused)
+            {
+                return;
+            }
             Ray ray = lookCamera.ScreenPointToRay(_posOnScreen);
 
             if(Physics.SphereCast(ray, pinCheckRadius, out RaycastHit hit, 1000.0f, pinMask.value))
             {
                 _clickCount++;
                 Pin pin = hit.transform.GetComponent<Pin>();
+                
                 if(_clickCount == 1)
                 {
+                    if(!pin.ShouldBeFirst)
+                    {
+                        _clickCount--;
+                        return;
+                    }
                     _checkPlane.SetNormalAndPosition(lookCamera.transform.forward, pin.transform.position);
 
                     _wire = Instantiate(wirePrefab, Vector3.zero, Quaternion.identity);
-                    _wire.StartPinPos = hit.point;
-                    _wire.EndPinPos = hit.point;
+                    _wire.StartPinPos = hit.transform.position;//hit.point;
+                    _wire.EndPinPos = hit.transform.position;//hit.point;
                     _wire.StartingPin = pin;
                     _wire.Init();
                 }
                 else if(_clickCount == 2)
                 {
                     
-                    _wire.EndPinPos = hit.point;
+                    _wire.EndPinPos = hit.transform.position;//hit.point;
 
                     float squareDistance = Vector3.SqrMagnitude(_wire.EndPinPos - _wire.StartPinPos);
                     if(squareDistance < minWireLength * minWireLength)
@@ -68,6 +112,8 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
                     //_wire.EndPinPos = _endingPin.transform.position;
 
                     _wire.EndingPin = pin;
+                    _wire.GenerateMeshAndCollider();
+                    _wire.SetLineRendererActive(false);
                     _clickCount = 0;
                     _wire = null;
                 }
@@ -76,6 +122,10 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
 
         private void OnPosOnScreen(InputAction.CallbackContext context)
         {
+            if(GameManager.Instance.GamePauseStatus == GamePauseStatus.Paused)
+            {
+                return;
+            }
             _posOnScreen = context.ReadValue<Vector2>();
             if(_wire != null)
             {
@@ -124,12 +174,14 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
             _controls.WireManagerActionMap.PosOnScreen.Enable();
             _controls.WireManagerActionMap.ScreenClick.performed += OnScreenClick;
             _controls.WireManagerActionMap.PosOnScreen.performed += OnPosOnScreen;
+            _controls.WireManagerActionMap.RemoveWire.performed += OnRemoveWire;
         }
 
         private void OnEnable() 
         {
             _controls.WireManagerActionMap.ScreenClick.Enable();
             _controls.WireManagerActionMap.PosOnScreen.Enable();
+            _controls.WireManagerActionMap.RemoveWire.Enable();
             
         }
 
@@ -137,7 +189,7 @@ namespace Game.PuzzleManagement.LogicGatePuzzles
         {
             _controls.WireManagerActionMap.ScreenClick.Disable();
             _controls.WireManagerActionMap.PosOnScreen.Disable();
-            
+            _controls.WireManagerActionMap.RemoveWire.Disable();
         }
     }
 }

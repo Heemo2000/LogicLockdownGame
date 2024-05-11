@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Game.Core;
 using Game.CameraManagement;
+using Game.UI;
 using Cinemachine;
 
 namespace Game.PlayerManagement
@@ -18,11 +19,18 @@ namespace Game.PlayerManagement
         [SerializeField]private CinemachineFreeLook freeLookCamera;
         [SerializeField]private Camera mainCamera;
         [SerializeField]private CameraSwitcher cameraSwitcher;
+        [SerializeField]private PlayerKeyHolderUI playerKeyHolderUI;
+
+        private PlayerMovement _playerRef;
         private void InitializePlayer()
         {
             var player = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
             player.FollowCamera = mainCamera.transform;
+            _playerRef = player;
+
             var playerInteract = player.GetComponent<PlayerInteract>();
+            
+
             playerInteract.InteractDetectCanvas = interactDetectCanavas;
             playerInteract.InteractCanvas = interactCanvas;
             playerInteract.BackButton = backButton;
@@ -31,12 +39,25 @@ namespace Game.PlayerManagement
             freeLookCamera.LookAt = player.transform;
 
             playerInteract.OnLeavingInteraction.AddListener(cameraSwitcher.SwitchBackToPlayerCamera);
+            
+            var playerKeyHolder = _playerRef.GetComponent<PlayerKeyHolder>();
+            playerKeyHolder.OnKeysChanged += playerKeyHolderUI.UpdateVisual;
         }
 
         private void Start() 
         {
             GameManager.Instance.OnGameplayStart.AddListener(InitializePlayer);
             GameManager.Instance.OnGameplayStart?.Invoke();
+        }
+
+        private void OnDestroy() 
+        {
+            if(_playerRef != null)
+            {
+                var playerKeyHolder = _playerRef.GetComponent<PlayerKeyHolder>();
+                playerKeyHolder.OnKeysChanged -= playerKeyHolderUI.UpdateVisual;
+            }
+            
         }
     }
 }

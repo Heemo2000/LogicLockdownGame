@@ -2,24 +2,24 @@
     "crosswordDatas" : 
                     [
                         {
-                            "word": "Computer",
-                            "clue": "A machine which reads, outputs and processes data."
+                            "word": "Compiler",
+                            "clue": "A software designed to read a program written in one language and change it to another."
                         },
                         {
-                            "word": "Byte",
-                            "clue":"2nd smallest memory."
+                            "word": "HeapAllocation",
+                            "clue":"A storage allocation strategy."
                         },
                         {
                             "word":"Programming",
                             "clue":"A way of giving instructions to the computer."
                         },
                         {
-                            "word":"Hardware",
-                            "clue":"Physical component of a computer."
+                            "word":"LoopUnrolling",
+                            "clue":"Strategy used to reduce the overhead caused by loop control structures"
                         },
                         {
-                            "word":"Software",
-                            "clue":"Non Physical component of a computer."
+                            "word":"JustInTime",
+                            "clue":"The compiler which transforms the translated code into executable machine code for the processor. "
                         }
                    ]
 }

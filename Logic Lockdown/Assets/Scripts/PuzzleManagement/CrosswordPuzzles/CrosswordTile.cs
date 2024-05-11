@@ -16,8 +16,11 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
         [SerializeField]private Sprite whiteBackground;
         [SerializeField]private Sprite transparentBackground;  
         [SerializeField]private Vector2 maxCheckDistance;
+        [SerializeField]private Color rightColor;
+        [SerializeField]private Color wrongColor;
         [SerializeField]private LayerMask tileMask;
         [SerializeField]private CrosswordTileInfo position;
+        
         
     
         public TMP_InputField InputField { get => inputField; }
@@ -124,11 +127,13 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
             inputField.text = word.ToUpper();
         }
         private void Start() {
+            /*
             HideBackground();
             for(int i = 0; i < _otherTiles.Count; i++)
             {
                 _otherTiles[i].HideBackground();
             }
+            */
 
             if(_showCluePart)
             {
@@ -142,14 +147,28 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
             _textEditable = !_showCluePart;
             inputField.readOnly = !_textEditable;
             inputField.onValueChanged.AddListener(Capitalize);
+            ShowBackground();
         }
     
         private void Update() 
         {
-            CheckOtherTiles(); 
+            CheckOtherTiles();
+            if(inputField.text.Length == 0)
+            {
+                backgroundImage.color = wrongColor;
+                return;
+            }
+            if(inputField.text[0] != _cluePart)
+            {
+                backgroundImage.color = wrongColor;
+            }
+            else
+            {
+                backgroundImage.color = rightColor;
+            }
         }
 
-        
+        /*
         private void OnMouseEnter()
         {
             if(!_showBackgroundGraphic)
@@ -170,6 +189,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
                 _otherTiles[i].HideBackground();
             }
         }
+        */
 
         private void OnMouseDown() {
             inputField.Select();
@@ -180,8 +200,5 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
             Gizmos.DrawLine(transform.position, transform.position + transform.right * maxCheckDistance.x);
             Gizmos.DrawLine(transform.position, transform.position - transform.up * maxCheckDistance.y);
         }
-
-        
     }
-
 }

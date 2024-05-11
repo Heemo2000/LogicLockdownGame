@@ -46,6 +46,15 @@ namespace Game.Controls
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RemoveWire"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e89543d-8e90-41d1-8526-2876920d4f82"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,17 @@ namespace Game.Controls
                     ""action"": ""PosOnScreen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29d2af39-1d1b-4f80-bb27-db41816dc495"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RemoveWire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -80,6 +100,7 @@ namespace Game.Controls
             m_WireManagerActionMap = asset.FindActionMap("WireManagerActionMap", throwIfNotFound: true);
             m_WireManagerActionMap_ScreenClick = m_WireManagerActionMap.FindAction("ScreenClick", throwIfNotFound: true);
             m_WireManagerActionMap_PosOnScreen = m_WireManagerActionMap.FindAction("PosOnScreen", throwIfNotFound: true);
+            m_WireManagerActionMap_RemoveWire = m_WireManagerActionMap.FindAction("RemoveWire", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -143,12 +164,14 @@ namespace Game.Controls
         private List<IWireManagerActionMapActions> m_WireManagerActionMapActionsCallbackInterfaces = new List<IWireManagerActionMapActions>();
         private readonly InputAction m_WireManagerActionMap_ScreenClick;
         private readonly InputAction m_WireManagerActionMap_PosOnScreen;
+        private readonly InputAction m_WireManagerActionMap_RemoveWire;
         public struct WireManagerActionMapActions
         {
             private @WireManagerControls m_Wrapper;
             public WireManagerActionMapActions(@WireManagerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @ScreenClick => m_Wrapper.m_WireManagerActionMap_ScreenClick;
             public InputAction @PosOnScreen => m_Wrapper.m_WireManagerActionMap_PosOnScreen;
+            public InputAction @RemoveWire => m_Wrapper.m_WireManagerActionMap_RemoveWire;
             public InputActionMap Get() { return m_Wrapper.m_WireManagerActionMap; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -164,6 +187,9 @@ namespace Game.Controls
                 @PosOnScreen.started += instance.OnPosOnScreen;
                 @PosOnScreen.performed += instance.OnPosOnScreen;
                 @PosOnScreen.canceled += instance.OnPosOnScreen;
+                @RemoveWire.started += instance.OnRemoveWire;
+                @RemoveWire.performed += instance.OnRemoveWire;
+                @RemoveWire.canceled += instance.OnRemoveWire;
             }
 
             private void UnregisterCallbacks(IWireManagerActionMapActions instance)
@@ -174,6 +200,9 @@ namespace Game.Controls
                 @PosOnScreen.started -= instance.OnPosOnScreen;
                 @PosOnScreen.performed -= instance.OnPosOnScreen;
                 @PosOnScreen.canceled -= instance.OnPosOnScreen;
+                @RemoveWire.started -= instance.OnRemoveWire;
+                @RemoveWire.performed -= instance.OnRemoveWire;
+                @RemoveWire.canceled -= instance.OnRemoveWire;
             }
 
             public void RemoveCallbacks(IWireManagerActionMapActions instance)
@@ -195,6 +224,7 @@ namespace Game.Controls
         {
             void OnScreenClick(InputAction.CallbackContext context);
             void OnPosOnScreen(InputAction.CallbackContext context);
+            void OnRemoveWire(InputAction.CallbackContext context);
         }
     }
 }

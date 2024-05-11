@@ -16,7 +16,5 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
         private void Awake() {
             _crosswordManager = GetComponent<CrosswordHandler>();
         }
-
-
     }
 }

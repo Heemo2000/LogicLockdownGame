@@ -1,0 +1,44 @@
+{
+    "quizDatas" : [
+        {
+            "question": "Which of the following is known as a compiler for a high-level language that runs on one machine and produces code for a different machine?",
+            "options" : ["Cross compiler",
+                         "Multipass Compiler",
+                         "Optimizing Compiler",
+                         "One pass compiler"
+                        ],
+            "answerIndex": 0
+        }, 
+        {
+            "question": "Which of the following is a system program that integrates a program’s individually compiled modules into a form that can be executed?",
+            "options" : ["Interpreter",
+                         "Assembler",
+                         "Compiler",
+                         "Linking Loader"],
+            "answerIndex": 3
+        }, 
+        {
+            "question": "Which of the following phase of the compiler is Syntax Analysis?",
+            "options" : ["Second",
+                  "Third",
+                  "First",
+                  "All of the mentioned"],
+            "answerIndex": 0
+        }, 
+        {
+            "question": "Which of the following flag is used to mask INTR interrupt?",
+            "options" : ["Zero flag",
+                         "auxiliary carry flag",
+                         "Interrupt flag",
+                         "Sign flag"],
+            "answerIndex": 2
+        }, 
+        {
+            "question": "Which of the following is a special-purpose register of microprocessor?",
+            "options": ["Program Counter",
+                        "Instruction Register",
+                        "Accumulator",
+                        "Temporary Register"],
+            "answerIndex": 0
+        }]
+}

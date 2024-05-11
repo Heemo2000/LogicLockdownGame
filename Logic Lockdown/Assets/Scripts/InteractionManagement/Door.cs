@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Game.PuzzleManagement;
-
+using Game.Core;
 
 namespace Game.InteractionManagement
 {
@@ -17,6 +17,7 @@ namespace Game.InteractionManagement
 
         [Min(0.1f)]
         [SerializeField]private float maxOpenDistance = 2.23f;
+        [SerializeField]private bool allowOpeningAtStarting;
         
         private Coroutine _checkCoroutine;
         private Coroutine _openCoroutine;
@@ -52,12 +53,15 @@ namespace Game.InteractionManagement
             Vector3 rightPartFinalPos = rightPart.position - rightPart.forward * maxOpenDistance;
             while(delta <= 1.0f)
             {
-                Vector3 leftLerpedPos = Vector3.Lerp(leftPartStartPos, leftPartFinalPos, delta);
-                Vector3 rightLerpedPos = Vector3.Lerp(rightPartStartPos, rightPartFinalPos, delta);
+                if(GameManager.Instance != null && GameManager.Instance.GamePauseStatus == GamePauseStatus.UnPaused)
+                {
+                    Vector3 leftLerpedPos = Vector3.Lerp(leftPartStartPos, leftPartFinalPos, delta);
+                    Vector3 rightLerpedPos = Vector3.Lerp(rightPartStartPos, rightPartFinalPos, delta);
 
-                leftPart.position = leftLerpedPos;
-                rightPart.position = rightLerpedPos;
-                delta += openSpeed * Time.deltaTime;
+                    leftPart.position = leftLerpedPos;
+                    rightPart.position = rightLerpedPos;
+                    delta += openSpeed * Time.deltaTime;
+                }
                 yield return null;
             }
 
@@ -83,9 +87,13 @@ namespace Game.InteractionManagement
         // Start is called before the first frame update
         void Start()
         {
-            if(_checkCoroutine == null)
+            if(_checkCoroutine == null && !allowOpeningAtStarting)
             {
                 _checkCoroutine = StartCoroutine(Check());
+            }
+            else if(allowOpeningAtStarting)
+            {
+                Open();
             }
         }
 

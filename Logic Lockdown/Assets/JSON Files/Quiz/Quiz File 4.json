@@ -1,0 +1,44 @@
+{
+    "quizDatas" : [
+        {
+            "question": "Which of the following is not true about 8085 microprocessor?",
+            "options" : ["It is an 8-bit microprocessor",
+                         "It is a 40 pin DIP chip",
+                         "It is manufactured using PMOS technology",
+                         "It has 16 address lines"
+                        ],
+            "answerIndex": 2
+        }, 
+        {
+            "question": "What is CFG?",
+            "options" : ["Regular Expression",
+                         "Compiler",
+                         "Language Expression",
+                         "All of the mentioned"],
+            "answerIndex": 1
+        }, 
+        {
+            "question": "Which of the following error can Compiler diagnose?",
+            "options" : ["Logical errors only",
+                  "Grammatical and logical errors",
+                  "Grammatical errors only",
+                  "All of the mentioned"],
+            "answerIndex": 2
+        }, 
+        {
+            "question": "In which of the following phase of the compiler is Lexical Analyser?",
+            "options" : ["Second",
+                         "Third",
+                         "First",
+                         "All of the mentioned"],
+            "answerIndex": 2
+        }, 
+        {
+            "question": "Characters are grouped into tokens in which of the following phase of the compiler design?",
+            "options": ["Code generator",
+                        "Lexical analyzer",
+                        "Parser",
+                        "Code Optimization"],
+            "answerIndex": 1
+        }]
+}

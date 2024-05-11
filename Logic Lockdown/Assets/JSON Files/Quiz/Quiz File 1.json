@@ -1,44 +1,44 @@
 {
     "quizDatas" : [
         {
-            "question": "A flashing red traffic light signifies that a driver should do what?",
-            "options" : ["stop",
-                         "speed up",
-                         "proceed with caution",
-                         "honk the horn"
+            "question": "Which of the following is a stage of compiler design?",
+            "options" : ["Semantic Analysis",
+                         "Intermediate Code Generator",
+                         "Code generator",
+                         "All of the mentioned"
                         ],
+            "answerIndex": 3
+        }, 
+        {
+            "question": "What is the use of a symbol table in compiler design?",
+            "options" : ["Finding name's scope",
+                         "Type checking",
+                         "Keeping all of the names of all entities in one place",
+                         "All of the mentioned"],
+            "answerIndex": 3
+        }, 
+        {
+            "question": "Which of the following error can a compiler check?",
+            "options" : ["Syntax Error",
+                  "Logical Error",
+                  "Both Logical and Syntax Error",
+                  "Compiler cannot check errors"],
             "answerIndex": 0
         }, 
         {
-            "question": "A knish is traditionally stuffed with what filling?",
-            "options" : ["potato",
-                         "creamed corn",
-                         "lemon custard",
-                         "raspberry jelly"] ,
-            "answerIndex": 0
+            "question": "A programmer, writes a program to multiply two numbers instead of dividing them by mistake, how can this error be detected?",
+            "options" : ["Compiler or interpreter",
+                         "Compiler only",
+                         "Interpreter only",
+                         "None of the mentioned"],
+            "answerIndex": 3
         }, 
         {
-            "question": "A pita is a type of what?",
-            "options" : ["fresh fruit",
-                  "flat bread",
-                  "French tart",
-                  "friend bean dip"],
+            "question": "Who is responsible for the creation of the symbol table?",
+            "options": ["Assembler",
+                        "Compiler",
+                        "Interpreter",
+                        "All of the mentioned"],
             "answerIndex": 1
-        }, 
-        {
-            "question": "A portrait that comically exaggerates a person's physical traits is called a what?",
-            "options" : ["landscape",
-                         "caricature",
-                         "still life",
-                         "Impressionism"],
-            "answerIndex": 1
-        }, 
-        {
-            "question": "A second-year college student is usually called a what?",
-            "options": ["sophomore",
-                        "senior",
-                        "freshman ",
-                        "junior "],
-            "answerIndex": 0
         }]
 }

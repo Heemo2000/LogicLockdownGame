@@ -8,10 +8,18 @@ namespace Game.UI
         [SerializeField]private Canvas[] interfaces;
     
         [SerializeField]private Canvas startingInterface;
-
-        private void Awake()
+        [SerializeField]private bool shouldOpenStartingInterface;
+        private void Start()
         {
-            Open(startingInterface);
+            for(int i = 0; i < interfaces.Length; i++)
+            {
+                GameObject currentUI = interfaces[i].gameObject;
+                currentUI.gameObject.SetActive(false);
+            }
+            if(shouldOpenStartingInterface)
+            {
+                Open(startingInterface);
+            }
         }
         
         public void Open(Canvas instance)

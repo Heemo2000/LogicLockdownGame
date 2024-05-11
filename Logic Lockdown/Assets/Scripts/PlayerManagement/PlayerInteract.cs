@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using Game.InteractionManagement;
+using Game.Core;
 
 namespace Game.PlayerManagement
 {
@@ -109,28 +110,34 @@ namespace Game.PlayerManagement
         private IEnumerator CheckInteractions()
         {
             
-            while(this.enabled)
+            while(GameManager.Instance.GameplayStatus == GameplayStatus.OnGoing)
             {
-                
-                var closest = GetClosest();
-                
-                if(closest != null && !_interactionLocked)
+                if(GameManager.Instance.GamePauseStatus != GamePauseStatus.Paused)
                 {
-                    Show();
+                    var closest = GetClosest();
+                
+                    if(closest != null && !_interactionLocked)
+                    {
+                        Show();
+                    }
+                    else
+                    {
+                        Hide();
+                    }
+                    if(_interactionLocked)
+                    {
+                        _playerMovement.enabled = false;
+                    }
+                    else
+                    {
+                        _playerMovement.enabled = true;
+                    }    
+                    yield return new WaitForSeconds(interactionCheckTime);
                 }
                 else
                 {
-                    Hide();
+                    yield return null;
                 }
-                if(_interactionLocked)
-                {
-                    _playerMovement.enabled = false;
-                }
-                else
-                {
-                    _playerMovement.enabled = true;
-                }    
-                yield return new WaitForSeconds(interactionCheckTime);
             }
         }
 

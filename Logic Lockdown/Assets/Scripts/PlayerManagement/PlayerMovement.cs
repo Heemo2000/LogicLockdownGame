@@ -71,7 +71,7 @@ namespace Game.PlayerManagement
         {
             if(context.performed)
             {
-                Jump();
+                //Jump();
             }
         }
 
@@ -179,6 +179,20 @@ namespace Game.PlayerManagement
                 HandleMovement();
                 HandleGravity();
             }
+        }
+
+        private void OnEnable() 
+        {
+            
+            Debug.Log("Player movement enabled");    
+        }
+
+        private void OnDisable() 
+        {
+            _moveInput.x = 0.0f;
+            _moveInput.y = 0.0f;
+            playerAnimator.SetFloat("move_input", 0.0f);
+            Debug.Log("Player movement disabled");    
         }
 
         private void OnDrawGizmos() 

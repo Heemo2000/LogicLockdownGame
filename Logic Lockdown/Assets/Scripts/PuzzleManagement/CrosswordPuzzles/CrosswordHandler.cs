@@ -24,7 +24,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
         [SerializeField]private bool showBackground;
 
         [Min(0.5f)]
-        [SerializeField]private float generateTime = 1.0f;
+        [SerializeField]private float generateTimeInterval = 1.0f;
         private CrosswordManagerControls _controls;
     
         private Coroutine _generateCrosswordCoroutine;
@@ -41,6 +41,10 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 
             foreach(CrosswordTile tile in _allTiles)
             {
+				if(tile.InputField.text.Length == 0)
+				{
+					return false;
+				}
 				char current = tile.InputField.text[0];
 				//Debug.Log("Current: " + current + ", Clue Part: " + tile.CluePart);
                 if(current != tile.CluePart)
@@ -356,6 +360,17 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 			}
 	    }
 
+		private void ShowAllAnswers()
+		{
+			foreach(CrosswordTile tile in _allTiles)
+			{
+				var cluePart = tile.CluePart;
+				if(tile.InputField.text[0] == ' ')
+				{
+					tile.InputField.text = cluePart + "";
+				}
+			}
+		}
         private void OnPosOnScreen(InputAction.CallbackContext context)
         {
             Vector3 posOnScreen = context.ReadValue<Vector2>();
@@ -390,7 +405,7 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 
         private IEnumerator GenerateCrossword()
         {
-            yield return new WaitForSeconds(generateTime);
+            yield return new WaitForSeconds(generateTimeInterval);
             FindCrosswordInfoPositions();
             ShowCrossword();
         }
@@ -405,6 +420,16 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
                 _generateCrosswordCoroutine = StartCoroutine(GenerateCrossword());
             }
         }
+
+		private void Update() 
+		{
+			var currentKeyboard = Keyboard.current;
+			if(currentKeyboard.numpad1Key.wasPressedThisFrame)
+			{
+				Debug.Log("Trying to show all answers");
+				ShowAllAnswers();
+			}	
+		}
 
         private void OnEnable() 
         {

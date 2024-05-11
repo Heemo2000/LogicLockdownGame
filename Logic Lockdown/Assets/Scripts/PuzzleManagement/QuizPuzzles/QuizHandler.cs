@@ -86,6 +86,7 @@ namespace Game.PuzzleManagement.QuizPuzzles
 
             OnCorrectAnswer.AddListener(correctnessIndicator.IndicateCorrect);
             OnWrongAnswer.AddListener(correctnessIndicator.IndicateWrong);
+            OnWrongAnswer.AddListener(ShowQuestionData);
             OnCorrectAnswer.AddListener(()=> _isAnswerCorrect = true);
             OnWrongAnswer.AddListener(()=> _isAnswerCorrect = false);
             

@@ -50,5 +50,4 @@ namespace Game.PuzzleManagement.CrosswordPuzzles
 			}
 		}
 	}
-
 }
