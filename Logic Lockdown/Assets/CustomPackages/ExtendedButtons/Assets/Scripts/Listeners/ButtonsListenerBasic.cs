@@ -108,7 +108,7 @@ namespace ExtendedButtons
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, maxDistance, layerMask.value))
             {
-                //Debug.Log("Got Something");
+                Debug.Log("Got Something");
                 Button3D button = hit.transform.GetComponent<Button3D>();
                 if (button != null)
                 {

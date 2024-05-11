@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4866658324952578740}
   - component: {fileID: 4866658324952578743}
   - component: {fileID: 4866658325344948823}
+  - component: {fileID: 5007783057386214338}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,6 +203,22 @@ MonoBehaviour:
   OnLeavingInteraction:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5007783057386214338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866658324952578699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5750494d0680ead488e99e32d8aa2027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlockedParticleEffect: {fileID: 5665958092107340275, guid: 2636bde6e708996409bce9e7264915be,
+    type: 3}
+  pickupParticleEffect: {fileID: 8697400331180497130, guid: fabdc41743036b945ade90d43535856b,
+    type: 3}
 --- !u!1 &4866658325619302861
 GameObject:
   m_ObjectHideFlags: 0

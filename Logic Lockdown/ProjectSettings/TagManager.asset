@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Pin
-  - MovingPlatform
+  - Wire
   - Interactable
   - Tile
   - Button

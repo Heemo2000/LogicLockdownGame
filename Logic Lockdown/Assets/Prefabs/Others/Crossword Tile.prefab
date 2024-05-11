@@ -64,6 +64,8 @@ MonoBehaviour:
   whiteBackground: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   transparentBackground: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
   maxCheckDistance: {x: 0.37, y: 0.32}
+  rightColor: {r: 0.24163468, g: 0.98490566, b: 0.21370581, a: 1}
+  wrongColor: {r: 0.86415094, g: 0.27228904, b: 0.27228904, a: 1}
   tileMask:
     serializedVersion: 2
     m_Bits: 512
@@ -88,6 +90,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652450792087284284, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652450792087284284, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652450792087284284, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8652450792755688028, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
         type: 3}
@@ -263,6 +280,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "E\u200B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652450793371643486, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652450793371643486, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652450793371643486, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8652450793437078241, guid: 8b45178bbc8f7824c996daebfbcc5f0b,
         type: 3}

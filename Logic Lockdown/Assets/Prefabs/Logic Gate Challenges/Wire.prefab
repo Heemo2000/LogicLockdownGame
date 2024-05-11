@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4924053656720390172}
   - component: {fileID: 4924053656720390173}
   - component: {fileID: 4924053656720390170}
-  m_Layer: 0
+  - component: {fileID: -5449136604637875113}
+  m_Layer: 7
   m_Name: Wire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +76,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -0.3838861, y: 6.98, z: -12.305}
-  - {x: 0, y: 0, z: 1}
+  - {x: -0.4, y: 6.98, z: -12.305}
+  - {x: 4.2, y: 6.98, z: -12.305}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -124,8 +125,8 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 5
+    numCapVertices: 5
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -148,14 +149,25 @@ MonoBehaviour:
   endPinPos: {x: 4.2, y: 6.98, z: -12.305}
   startingPin: {fileID: 0}
   endingPin: {fileID: 0}
-  pinMask:
-    serializedVersion: 2
-    m_Bits: 64
-  lowVoltColor: {r: 0, g: 0, b: 0, a: 0}
-  highVoltColor: {r: 1, g: 0.020754695, b: 0.020754695, a: 0}
+  lowVoltColor: {r: 0, g: 0, b: 0, a: 1}
+  highVoltColor: {r: 1, g: 0.020754695, b: 0.020754695, a: 1}
   wireMaterialPrefab: {fileID: 2100000, guid: 568ca7cd3b5d9f74f9a015ee7746f9f5, type: 2}
   width: 0.1
   pinIndicatorRadius: 0.2
   OnSetVoltage:
     m_PersistentCalls:
       m_Calls: []
+--- !u!64 &-5449136604637875113
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4924053656720390171}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
